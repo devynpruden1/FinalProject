@@ -1,0 +1,24 @@
+<!-- views/stock.ejs -->
+<%- include('layout', { title: 'Stock List' }) %>
+
+<div class="container mt-4">
+  <h1>Stock List</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% stockItems.forEach(stock => { %>
+        <tr>
+          <td><%= stock.Name %></td>
+          <td><%= stock.Description %></td>
+          <td><%= stock.Price %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>

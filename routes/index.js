@@ -1,29 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* GET index page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home' });
 });
-/* GET home page. */
-router.get('/home', function(req, res, next) {
-  res.render('index', { title: 'Home' });
-});
-/* GET about us page. */
-router.get('/aboutus', function(req, res, next) {
-  res.render('index', { title: 'About Us' });
-});
-/* GET Product page. */
-router.get('/product', function(req, res, next) {
-  res.render('index', { title: 'Product' });
-});
-/* GET Services page. */
-router.get('/service', function(req, res, next) {
-  res.render('index', { title: 'Service' });
-});
-/* GET contact me page. */
-router.get('/contactus', function(req, res, next) {
-  res.render('index', { title: 'Contact us' });
+
+
+router.get('/stock', function(req, res, next) {
+  res.render('index', { title: 'stock list' });
 });
 
 module.exports = router;
