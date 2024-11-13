@@ -26,9 +26,9 @@ router.get('/add', async (req, res) => {
 router.post('/add',async(req,res,next)=>{
   try{
       let newPart = Stock({
-          "Description":req.body.description,
-          "Item":req.body.item,
-          "Price":req.body.price,
+          "description":req.body.description,
+          "item":req.body.item,
+          "price":req.body.price
       });
       Stock.create(newPart).then(()=>{
           res.redirect('/stock');
