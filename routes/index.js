@@ -5,9 +5,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home' });
 });
 
-
-router.get('/stock', function(req, res, next) {
-  res.render('index', { title: 'stock list' });
+router.get('/Parts/add', function(req, res, next) {
+  res.render('add', { title: 'Add'});
 });
-
 module.exports = router;
