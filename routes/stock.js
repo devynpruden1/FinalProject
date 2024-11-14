@@ -48,4 +48,57 @@ router.post('/add',async(req,res,next)=>{
   }
 });
 
+router.get('/edit/:id',async(req,res,next)=>{
+  try{
+      const id = req.params.id;
+      const editPart= await Stock.findById(id);
+      res.render('stock/edit',
+          {
+              title:'Edit Part',
+              Stock:editPart
+          }
+      )
+  }
+  catch(err)
+  {
+      console.error(err);
+      next(err); 
+  }
+});
+
+router.post('/edit/:id',async(req,res,next)=>{
+  try{
+      let id=req.params.id;
+      let updatedPart = Stock({
+          "_id":id,
+          "Title":req.body.description,
+          "Author":req.body.item,
+          "Genre":req.body.price
+      });
+      Stock.findByIdAndUpdate(id,updatedPart).then(()=>{
+          res.redirect('/stock')
+      })
+  }
+  catch(err){
+      console.error(err);
+      res.render('Parts/list',{
+          error:'Error on the server'
+      })
+  }
+});
+
+router.get('/delete/:id',async(req,res,next)=>{
+  try{
+      let id=req.params.id;
+      Stock.deleteOne({_id:id}).then(()=>{
+          res.redirect('/stock')
+      })
+  }
+  catch(error){
+      console.error(err);
+      res.render('Parts/list',{
+          error:'Error on the server'
+      })
+  }
+});
 module.exports = router;
