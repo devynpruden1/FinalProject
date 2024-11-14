@@ -52,7 +52,7 @@ router.get('/edit/:id',async(req,res,next)=>{
   try{
       const id = req.params.id;
       const editPart= await Stock.findById(id);
-      res.render('stock/edit',
+      res.render('Parts/edit',
           {
               title:'Edit Part',
               Stock:editPart
@@ -66,24 +66,24 @@ router.get('/edit/:id',async(req,res,next)=>{
   }
 });
 
-router.post('/edit/:id',async(req,res,next)=>{
-  try{
-      let id=req.params.id;
-      let updatedPart = Stock({
-          "_id":id,
-          "Title":req.body.description,
-          "Author":req.body.item,
-          "Genre":req.body.price
-      });
-      Stock.findByIdAndUpdate(id,updatedPart).then(()=>{
-          res.redirect('/stock')
-      })
-  }
-  catch(err){
+router.post('/edit/:id', async (req, res, next) => {
+  try {
+      let id = req.params.id;
+
+      let updatedPart = {
+          description: req.body.description,
+          item: req.body.item,
+          price: req.body.price
+      };
+
+      await Stock.findByIdAndUpdate(id, updatedPart);
+
+      res.redirect('/stock');
+  } catch (err) {
       console.error(err);
-      res.render('Parts/list',{
-          error:'Error on the server'
-      })
+      res.render('Parts/list', {
+          error: 'Error on the server'
+      });
   }
 });
 
