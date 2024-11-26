@@ -7,7 +7,8 @@ let session = require('express-session');
 let passport = require('passport');
 let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
-let flash = require(connect-flash);
+let flash = require('connect-flash');
+let app = express();
 
 // setting up express session
 app.use(session({
@@ -42,7 +43,7 @@ passport.deserializeUser(user.deserializeUser());
 let indexRouter = require('../routes/index');
 let stockRouter = require('../routes/stock')
 
-let app = express();
+
 
 
 
