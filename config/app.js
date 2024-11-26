@@ -3,11 +3,50 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let session = require('express-session');
+let passport = require('passport');
+let passportLocal = require('passport-local');
+let localStrategy = passportLocal.Strategy;
+let flash = require(connect-flash);
+
+// setting up express session
+app.use(session({
+  secret:"SomeSecret",
+  saveUninitalized:false,
+  resave:false
+}))
+
+// initalize flash
+
+app.use(flash());
+
+// initalize passport
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+//creating a user model instance
+
+let userModel = require('../model/user');
+let user = userModel.User;
+
+
+//serialize and desearlize the user information
+
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
+
+
 
 let indexRouter = require('../routes/index');
 let stockRouter = require('../routes/stock')
 
 let app = express();
+
+
+
+
 let mongoose = require('mongoose');
 let DB = require('./db');
 // point my mongoose to the URI
