@@ -1,40 +1,40 @@
-<%- include ../Partials/header.ejs%>
-<%- include ../Partials/main_nav.ejs%>
-<main class="container">
-    <div class="row">
-        <div class="offset-md-1 col-md-10">
-            <h1><%= title %></h1>
-            <br>
-            <a href="/stock/add" class="btn btn-primary" role="button">
-                <i class="fas fa-plus-circle"></i> Add Part
-            </a>
-            <table class="table table-bordered table-striped table-hover">
-                <tr class="d-flex">
-                    <th class="text-center col-2">Description</th>
-                    <th class="text-center col-2">Item</th>
-                    <th class="text-center col-1">Price</th>
-                </tr>
-                <% for(let count=0;count<stockItems.length;count++) { %>
-                    <tr class="d-flex">
-                        <td class="text-center col-2"><%= stockItems[count].description %></td>
-                        <td class="text-center col-2"><%= stockItems[count].item %></td>
-                        <td class="text-center col-1"><%=stockItems[count].price%></td>
-                        <td class="text-center col-1">
-                            <a href="/stock/edit/<%= stockItems[count]._id%>"
-                                class="btn btn-primary btn-sm">
-                            <i class="fas fa-pencil-alt"></i>edit
-                        </a>
-                        </td>
-                        <td class="text-center col-1">
-                            <a href="/stock/delete/<%= stockItems[count]._id%>"
-                                class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i>Delete
-                        </a>
-                        </td>
-                    </tr>    
-                <%} %>
-            </table>
-        </div>
-    </div>
-</main>
-<%- include ../Partials/footer.ejs%>
+<%- include('Partials/header') %>
+<%- include('Partials/main_nav') %>
+
+<div class="container mt-4">
+  <h1>Stock List</h1>
+
+  <% if (user) { %> <!-- Add button visible only for logged-in users -->
+    <a href="/stock/add" class="btn btn-primary" role="button">Add Stock</a>
+  <% } %>
+
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Item</th>
+        <th>Price</th>
+        <% if (user) { %> <!-- Actions column visible only for logged-in users -->
+          <th>Actions</th>
+        <% } %>
+      </tr>
+    </thead>
+    <tbody>
+      <% stockItems.forEach(stock => { %> <!-- Loop through stockItems array -->
+        <tr>
+          <td><%= stock.description %></td>
+          <td><%= stock.item %></td>
+          <td><%= stock.price %></td>
+          <% if (user) { %> <!-- Edit/Delete buttons visible only for logged-in users -->
+            <td>
+              <a href="/stock/edit/<%= stock._id %>" class="btn btn-primary">Edit</a>
+              <a href="/stock/delete/<%= stock._id %>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
+            </td>
+          <% } %>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('Partials/footer') %>
