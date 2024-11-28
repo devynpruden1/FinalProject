@@ -1,3 +1,4 @@
+require('dotenv').config();
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -18,11 +19,8 @@ let stockRouter = require('../routes/stock');
 let userRouter = require('../routes/user');
 
 // MongoDB Setup
-let DB = require('./db');
-mongoose.connect(DB.URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+let DB = process.env.MONGODB_URI;
+mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true });
 let mongoDB = mongoose.connection;
 mongoDB.on('error', console.error.bind(console, 'Connection Error'));
 mongoDB.once('open', () => {
@@ -62,7 +60,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Make user globally accessible in templates
+
 app.use((req, res, next) => {
   res.locals.user = req.user || null;
   next();
@@ -71,7 +69,7 @@ app.use((req, res, next) => {
 // Mount Routers
 app.use('/', indexRouter);
 app.use('/stock', stockRouter);
-app.use('/', userRouter); // Ensure this matches your userRouter endpoints
+app.use('/', userRouter); 
 
 // Catch 404 and Forward to Error Handler
 app.use(function (req, res, next) {
