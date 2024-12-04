@@ -44,3 +44,7 @@ a{
 label{
   color: white;
 }
+
+.navbar{
+  background-image: linear-gradient(to right, black, rgb(28, 27, 27), rgb(0, 0, 0));
+}
