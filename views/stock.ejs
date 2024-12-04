@@ -1,8 +1,13 @@
 <%- include('Partials/header') %>
 <%- include('Partials/main_nav') %>
-
+<img class = "partsBackground" src ="https://t3.ftcdn.net/jpg/06/42/15/52/360_F_642155259_wkEIRRSocT0VH4W8E7lneTiywgwJcvFc.jpg">
 <div class="container mt-4">
-  <h1>Stock List</h1>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Oswald:wght@200..700&family=Playwrite+DE+Grund:wght@100..400&display=swap" rel="stylesheet">
+  <link rel = 'stylesheet' href='/stylesheets/style.css' />
+  <h1 class = stockTitle>Stock List</h1>
 
   <% if (user) { %> <!-- Add button visible only for logged-in users -->
     <a href="/stock/add" class="btn btn-primary" role="button">Add Stock</a>
