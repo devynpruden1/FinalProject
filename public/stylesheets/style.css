@@ -22,8 +22,8 @@ a{
 
 .productLink{
   margin: auto;
-  width: 10%;
   padding: 10px;
+  text-align: center;
 }
 
 .partsBackground{
