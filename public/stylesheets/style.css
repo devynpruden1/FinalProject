@@ -50,3 +50,22 @@ label{
 .navbar{
   background-image: linear-gradient(to right, black, rgb(28, 27, 27), rgb(0, 0, 0));
 }
+
+th{
+  font-family: "Anton SC", sans-serif;
+  font-size: 24px;
+  text-align: left;
+  color: whitesmoke;
+}
+
+td{
+  font-family:'Times New Roman', Times, serif;
+  font-size: 16px;
+  text-align: left;
+  
+  color: whitesmoke;
+}
+
+table{
+  border-radius: 6px;
+}
