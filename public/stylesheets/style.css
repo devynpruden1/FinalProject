@@ -24,6 +24,7 @@ a{
   margin: auto;
   padding: 10px;
   text-align: center;
+  color: black;
 }
 
 .partsBackground{
@@ -64,8 +65,4 @@ td{
   text-align: left;
   
   color: whitesmoke;
-}
-
-table{
-  border-radius: 6px;
 }
